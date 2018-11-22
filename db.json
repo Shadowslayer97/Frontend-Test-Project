@@ -1,0 +1,23 @@
+{
+  "ids": {
+    "User": 3,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "Category": 1,
+    "Sub-category": 1
+  },
+  "models": {
+    "User": {
+      "1": "{\"username\":\"goodjob\",\"password\":\"$2a$10$vTnxiJnmRq6DAHODTXMfRehcJTAb04Up8yUG1xrJ6uzzSfQKGvo9K\",\"email\":\"goodjob@shoppinpal.com\",\"id\":1}",
+      "2": "{\"username\":\"you_rock\",\"password\":\"$2a$10$1zccdJ2tHUMg7TnBvQ8aieyJgyqjW6Y.KX45uWOyKMESu4CvRklR2\",\"email\":\"yourock@shoppinpal.com\",\"id\":2}"
+    },
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "Category": {},
+    "Sub-category": {}
+  }
+}

@@ -5,9 +5,11 @@
   "scripts": {
     "start": "node .",
     "pretest": "eslint .",
-    "posttest": "nsp check"
+    "posttest": "nsp check",
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server.js ./client-app/src/app/shared/sdk -d ng2web -i enabled"
   },
   "dependencies": {
+    "@mean-expert/loopback-sdk-builder": "^2.3.1",
     "bluebird": "3.4.6",
     "compression": "1.0.3",
     "cors": "2.5.2",
