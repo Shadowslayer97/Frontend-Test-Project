@@ -37,6 +37,7 @@
 import { ErrorHandler } from './services/core/error.service';
 import { LoopBackAuth } from './services/core/auth.service';
 import { LoggerService } from './services/custom/logger.service';
+import { JSONSearchParams } from './services/core/search.params';
 import { SDKModels } from './services/custom/SDKModels';
 import { InternalStorage, SDKStorage } from './storage/storage.swaps';
 // import { HttpClientModule } from '@angular/common/http';
@@ -79,6 +80,7 @@ export class SDKBrowserModule {
       providers : [
         LoopBackAuth,
         LoggerService,
+        JSONSearchParams,
         SDKModels,
         RealTime,
         UserApi,

@@ -1,5 +1,5 @@
 {
-  "name": "Sub-category",
+  "name": "SubCategory",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

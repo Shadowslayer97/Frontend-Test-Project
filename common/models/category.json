@@ -23,9 +23,9 @@
   },
   "validations": [],
   "relations": {
-    "sub-categories": {
+    "SubCategories": {
       "type": "hasMany",
-      "model": "Sub-category",
+      "model": "SubCategory",
       "foreignKey": "categoryId"
     }
   },

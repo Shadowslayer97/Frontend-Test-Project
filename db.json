@@ -5,7 +5,7 @@
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Category": 1,
+    "Category": 2,
     "Sub-category": 1
   },
   "models": {
@@ -17,7 +17,9 @@
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
-    "Category": {},
+    "Category": {
+      "1": "{\"name\":\"sport\",\"description\":\"soething soemthing....\",\"type\":\"Sport\",\"id\":1}"
+    },
     "Sub-category": {}
   }
 }

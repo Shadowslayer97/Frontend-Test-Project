@@ -1,34 +1,19 @@
 /* tslint:disable */
 import { Injectable, Inject, Optional } from '@angular/core';
-// import { HttpClient, HttpHeaders, HttpRequest, HttpParams, HttpResponse, HttpParameterCodec } from '@angular/common/http';
+import { Http, Headers, Request, RequestOptions } from '@angular/http';
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { JSONSearchParams } from './search.params';
 import { ErrorHandler } from './error.service';
 import { LoopBackAuth } from './auth.service';
 import { LoopBackConfig } from '../../lb.config';
 import { LoopBackFilter, AccessToken } from '../../models/BaseModels';
 import { SDKModels } from '../custom/SDKModels';
-import { Observable, Subject } from 'rxjs';
-import { catchError, map, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { SocketConnection } from '../../sockets/socket.connections';
 // Making Sure EventSource Type is available to avoid compilation issues.
 declare var EventSource: any;
-class CustomQueryEncoderHelper implements HttpParameterCodec {
-  encodeKey(k: string): string {
-      return encodeURIComponent(k);
-  }
-
-  encodeValue(v: string): string {
-      return encodeURIComponent(v);
-  }
-
-  decodeKey(k: string): string {
-      return decodeURIComponent(k);
-  }
-
-  decodeValue(v: string): string {
-      return decodeURIComponent(v);
-  }
-}
 /**
 * @module BaseLoopBackApi
 * @author Jonathan Casarrubias <@johncasarrubias> <github:jonathan-casarrubias>
@@ -47,10 +32,11 @@ export abstract class BaseLoopBackApi {
   protected model: any;
 
   constructor(
-    // @Inject(HttpClient) protected http: HttpClient,
+    @Inject(Http) protected http: Http,
     @Inject(SocketConnection) protected connection: SocketConnection,
     @Inject(SDKModels) protected models: SDKModels,
     @Inject(LoopBackAuth) protected auth: LoopBackAuth,
+    @Inject(JSONSearchParams) protected searchParams: JSONSearchParams,
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     this.model = this.models.get(this.getModelName());
@@ -90,12 +76,11 @@ export abstract class BaseLoopBackApi {
       this.connection.on(event, (res: any) => subject.next(res));
       return subject.asObservable();
     } else {
-      let httpParams = new HttpParams({ encoder: new CustomQueryEncoderHelper() });
       // Headers to be sent
-      let headers: HttpHeaders = new HttpHeaders();
-      headers = headers.append('Content-Type', 'application/json');
+      let headers: Headers = new Headers();
+      headers.append('Content-Type', 'application/json');
       // Authenticate request
-      headers = this.authenticate(url, headers);
+      this.authenticate(url, headers);
       // Body fix for built in remote methods using "data", "options" or "credentials
       // that are the actual body, Custom remote method properties are different and need
       // to be wrapped into a body object
@@ -106,65 +91,43 @@ export abstract class BaseLoopBackApi {
       } else {
         body = postBody;
       }
-
-      let queryString: string = '';
-
+      let filter: string = '';
       // Separate filter object from url params and add to search query
       if (urlParams.filter) {
         if (LoopBackConfig.isHeadersFilteringSet()) {
-          headers = headers.append('filter', JSON.stringify(urlParams.filter));
+          headers.append('filter', JSON.stringify(urlParams.filter));
         } else {
-          queryString = `?filter=${encodeURIComponent(JSON.stringify(urlParams.filter))}`;
+          filter = `?filter=${ encodeURI(JSON.stringify(urlParams.filter))}`;
         }
         delete urlParams.filter;
       }
-
       // Separate where object from url params and add to search query
+      /**
+      CODE BELOW WILL GENERATE THE FOLLOWING ISSUES:
+      - https://github.com/mean-expert-official/loopback-sdk-builder/issues/356
+      - https://github.com/mean-expert-official/loopback-sdk-builder/issues/328
       if (urlParams.where) {
-        if (LoopBackConfig.isHeadersWhereSet()) {
-          /**
-          CODE BELOW WILL GENERATE THE FOLLOWING ISSUES:
-          - https://github.com/mean-expert-official/loopback-sdk-builder/issues/356
-          - https://github.com/mean-expert-official/loopback-sdk-builder/issues/328
-          **/
-          headers = headers.append('where', JSON.stringify(urlParams.where));
-        } else {
-          queryString = `?where=${encodeURIComponent(JSON.stringify(urlParams.where))}`;
-        }
+        headers.append('where', JSON.stringify(urlParams.where));
         delete urlParams.where;
       }
-
+      **/
       if (typeof customHeaders === 'function') {
         headers = customHeaders(headers);
       }
-/* enhancement/configure-where-headers
       this.searchParams.setJSON(urlParams);
       let request: Request = new Request(
         new RequestOptions({
-          headers        : headers,
-          method         : method,
-          url            : `${url}${queryString}`,
-          search         : Object.keys(urlParams).length > 0 ? this.searchParams.getURLSearchParams() : null,
-          body           : body ? JSON.stringify(body) : undefined,
-          withCredentials: LoopBackConfig.getRequestOptionsCredentials()
+          headers : headers,
+          method  : method,
+          url     : `${url}${filter}`,
+          search  : Object.keys(urlParams).length > 0
+                  ? this.searchParams.getURLSearchParams() : null,
+          body    : body ? JSON.stringify(body) : undefined
         })
       );
-TODO Fix Merge Conflict */
-      Object.keys(urlParams).forEach(paramKey => {
-        let paramValue = urlParams[paramKey];
-        paramValue = typeof paramValue === 'object' ? JSON.stringify(paramValue) : paramValue;
-        httpParams = httpParams.append(paramKey, paramValue);
-      });
-      let request = new HttpRequest(method, `${url}${queryString}`, body, {
-        headers        : headers,
-        params         : httpParams,
-        withCredentials: LoopBackConfig.getRequestOptionsCredentials()
-      });
-      return this.http.request(request).pipe(
-        filter(event => event instanceof HttpResponse),
-        map((res: HttpResponse<any>) => res.body),
-        catchError((e) => this.errorHandler.handleError(e))
-      );
+      return this.http.request(request)
+        .map((res: any) => (res.text() != "" ? res.json() : {}))
+        .catch((e) => this.errorHandler.handleError(e));
     }
   }
   /**
@@ -177,15 +140,13 @@ TODO Fix Merge Conflict */
    * @description
    * This method will try to authenticate using either an access_token or basic http auth
    */
-  public authenticate<T>(url: string, headers: HttpHeaders): HttpHeaders {
+  public authenticate<T>(url: string, headers: Headers): void {
     if (this.auth.getAccessTokenId()) {
-      headers = headers.append(
+      headers.append(
         'Authorization',
         LoopBackConfig.getAuthPrefix() + this.auth.getAccessTokenId()
       );
     }
-
-    return headers;
   }
   /**
    * @method create
@@ -201,8 +162,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getPath(),
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path
-    ].join('/'), undefined, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), undefined, undefined, { data }, null, customHeaders).map((data: T) => this.model.factory(data));
   }
   /**
    * @method onCreate
@@ -219,7 +179,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path
     ].join('/'), undefined, undefined, { data }, true)
-    .pipe(map((datum: T[]) => datum.map((data: T) => this.model.factory(data))));
+    .map((datum: T[]) => datum.map((data: T) => this.model.factory(data)));
   }
   /**
    * @method createMany
@@ -236,7 +196,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path
     ].join('/'), undefined, undefined, { data }, null, customHeaders)
-    .pipe(map((datum: T[]) => datum.map((data: T) => this.model.factory(data))));
+    .map((datum: T[]) => datum.map((data: T) => this.model.factory(data)));
   }
   /**
    * @method onCreateMany
@@ -253,7 +213,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path
     ].join('/'), undefined, undefined, { data }, true)
-    .pipe(map((datum: T[]) => datum.map((data: T) => this.model.factory(data))));
+    .map((datum: T[]) => datum.map((data: T) => this.model.factory(data)));
   }
   /**
    * @method findById
@@ -273,7 +233,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       ':id'
     ].join('/'), { id }, _urlParams, undefined, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method find
@@ -289,7 +249,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path
     ].join('/'), undefined, { filter }, undefined, null, customHeaders)
-    .pipe(map((datum: T[]) => datum.map((data: T) => this.model.factory(data))));
+    .map((datum: T[]) => datum.map((data: T) => this.model.factory(data)));
   }
   /**
    * @method exists
@@ -322,7 +282,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       'findOne'
     ].join('/'), undefined, { filter }, undefined, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method updateAll
@@ -375,7 +335,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       ':id'
     ].join('/'), { id }, undefined, undefined, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onDeleteById
@@ -391,8 +351,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
       ':id'
-    ].join('/'), { id }, undefined, undefined, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), { id }, undefined, undefined, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method count
@@ -427,7 +386,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       ':id'
     ].join('/'), { id }, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onUpdateAttributes
@@ -443,8 +402,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
       ':id'
-    ].join('/'), { id }, undefined, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), { id }, undefined, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method upsert
@@ -460,7 +418,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
     ].join('/'), undefined, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onUpsert
@@ -475,8 +433,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getPath(),
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
-    ].join('/'), undefined, undefined, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), undefined, undefined, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method upsertPatch
@@ -492,7 +449,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
     ].join('/'), undefined, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onUpsertPatch
@@ -507,8 +464,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getPath(),
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
-    ].join('/'), undefined, undefined, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), undefined, undefined, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method upsertWithWhere
@@ -527,7 +483,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       'upsertWithWhere'
     ].join('/'), undefined, _urlParams, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onUpsertWithWhere
@@ -545,8 +501,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
       'upsertWithWhere'
-    ].join('/'), undefined, _urlParams, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), undefined, _urlParams, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method replaceOrCreate
@@ -563,7 +518,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       'replaceOrCreate'
     ].join('/'), undefined, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onReplaceOrCreate
@@ -579,8 +534,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
       'replaceOrCreate'
-    ].join('/'), undefined, undefined, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), undefined, undefined, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method replaceById
@@ -597,7 +551,7 @@ TODO Fix Merge Conflict */
       this.model.getModelDefinition().path,
       ':id', 'replace'
     ].join('/'), { id }, undefined, { data }, null, customHeaders)
-    .pipe(map((data: T) => this.model.factory(data)));
+    .map((data: T) => this.model.factory(data));
   }
   /**
    * @method onReplaceById
@@ -613,8 +567,7 @@ TODO Fix Merge Conflict */
       LoopBackConfig.getApiVersion(),
       this.model.getModelDefinition().path,
       ':id', 'replace'
-    ].join('/'), { id }, undefined, { data }, true)
-    .pipe(map((data: T) => this.model.factory(data)));
+    ].join('/'), { id }, undefined, { data }, true).map((data: T) => this.model.factory(data));
   }
   /**
    * @method createChangeStream

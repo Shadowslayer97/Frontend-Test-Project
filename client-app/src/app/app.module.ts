@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { SDKBrowserModule } from './shared/sdk/index';
 
 import { AppComponent } from './app.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

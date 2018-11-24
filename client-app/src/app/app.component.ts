@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoopBackConfig } from './shared/sdk/index';
+import { CategoryComponent } from './category/category.component';
 
 @Component({
   selector: 'app-root',
