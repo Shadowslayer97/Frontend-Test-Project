@@ -32,6 +32,21 @@ export class UserApi extends BaseLoopBackApi {
     super(http, connection,  models, auth, searchParams, errorHandler);
   }
 
+  // Create a user with username,email and password
+
+  public createUser(data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Users";
+    let _routeParams: any = {};
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
   /**
    * Find a related item by id for accessTokens.
    *

@@ -1,6 +1,7 @@
 /* tslint:disable */
-import { merge, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { merge } from 'rxjs/observable/merge';
 import { LoopBackFilter, StatFilter } from './index';
 import { SocketConnection } from '../sockets/socket.connections';
 /**
@@ -53,7 +54,7 @@ export class FireLoopRef<T> {
   * This method requires to be called on components destroy
   *
   * ngOnDestroy() {
-  *  this.someRef.dispose() 
+  *  this.someRef.dispose()
   * }
   **/
   public dispose(): void {
@@ -276,7 +277,7 @@ export class FireLoopRef<T> {
   * @param {any} data Any type of data sent to the server
   * @return {Observable<T>}
   * @description
-  * This internal method will run operations depending on current context 
+  * This internal method will run operations depending on current context
   **/
   private operation(event: string, data: any): Observable<T> {
     if (!this.relationship) {
