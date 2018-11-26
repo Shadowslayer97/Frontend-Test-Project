@@ -1,7 +1,7 @@
 {
   "ids": {
-    "User": 3,
-    "AccessToken": 1,
+    "User": 5,
+    "AccessToken": 4,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
@@ -11,9 +11,15 @@
   "models": {
     "User": {
       "1": "{\"username\":\"goodjob\",\"password\":\"$2a$10$vTnxiJnmRq6DAHODTXMfRehcJTAb04Up8yUG1xrJ6uzzSfQKGvo9K\",\"email\":\"goodjob@shoppinpal.com\",\"id\":1}",
-      "2": "{\"username\":\"you_rock\",\"password\":\"$2a$10$1zccdJ2tHUMg7TnBvQ8aieyJgyqjW6Y.KX45uWOyKMESu4CvRklR2\",\"email\":\"yourock@shoppinpal.com\",\"id\":2}"
+      "2": "{\"username\":\"you_rock\",\"password\":\"$2a$10$1zccdJ2tHUMg7TnBvQ8aieyJgyqjW6Y.KX45uWOyKMESu4CvRklR2\",\"email\":\"yourock@shoppinpal.com\",\"id\":2}",
+      "3": "{\"username\":\"shadowman\",\"password\":\"$2a$10$59.cND93Rlv/WtmHCIMm7eFlKKmrg4Vzcj69VycZ26gDGr2oNPLCm\",\"email\":\"shadow1@gmail.com\",\"id\":3}",
+      "4": "{\"username\":\"test\",\"password\":\"$2a$10$RwP8W5Vfr5WBnbYPRQNXSekVMgt4R0Qj14wuBDSFlJLAzAiyZ3DlO\",\"email\":\"test@gmail.com\",\"id\":4}"
     },
-    "AccessToken": {},
+    "AccessToken": {
+      "W8JWrR5vGXSJpM7u6j4UIhAwZgAa148HFWARelQGElXioGRehTKlG5NgpeCgSst5": "{\"id\":\"W8JWrR5vGXSJpM7u6j4UIhAwZgAa148HFWARelQGElXioGRehTKlG5NgpeCgSst5\",\"ttl\":1209600,\"created\":\"2018-11-25T20:04:16.329Z\",\"userId\":4}",
+      "xMB6rq0FiiUFMFqtDEow2uo7AQGXHBBWUVSoDJu1FO6iEjD8HiDDiXoJ06VfmxNq": "{\"id\":\"xMB6rq0FiiUFMFqtDEow2uo7AQGXHBBWUVSoDJu1FO6iEjD8HiDDiXoJ06VfmxNq\",\"ttl\":1209600,\"created\":\"2018-11-25T20:06:36.913Z\",\"userId\":4}",
+      "bwJMX2fLGEzu66FuzJ3yGvBuHv5SkOugwvU1Xzd9t7FY27GDi2p0Gdzx7A3XYcEb": "{\"id\":\"bwJMX2fLGEzu66FuzJ3yGvBuHv5SkOugwvU1Xzd9t7FY27GDi2p0Gdzx7A3XYcEb\",\"ttl\":1209600,\"created\":\"2018-11-25T20:23:36.624Z\",\"userId\":4}"
+    },
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
