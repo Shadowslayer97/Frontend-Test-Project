@@ -4,10 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SDKBrowserModule } from './shared/sdk/index';
 import { RouterModule, Routes } from '@angular/router';
+import { SharedService } from './shared.service';
 
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { CategorySearchComponent } from './category-search/category-search.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { BreadcrumComponent } from './breadcrum/breadcrum.component';
+import { CategoryIndividualComponent } from './category-individual/category-individual.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 
 const appRoutes: Routes = [
   { path: '' ,redirectTo: '/login' ,pathMatch:'full' },
@@ -20,7 +26,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CategoryComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    CategorySearchComponent,
+    CategoryListComponent,
+    BreadcrumComponent,
+    CategoryIndividualComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +42,7 @@ const appRoutes: Routes = [
       appRoutes,
     )
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

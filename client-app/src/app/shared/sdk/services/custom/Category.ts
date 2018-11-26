@@ -75,6 +75,20 @@ export class CategoryApi extends BaseLoopBackApi {
     return result;
   }
 
+  public deleteCategory(id: any) : Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Categories/:id";
+    let _routeParams: any = {
+      id: id
+    };
+    let customHeaders: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
   /**
    * Delete a related item by id for sub-categories.
    *

@@ -1,3 +1,17 @@
-<p>
-  category works!
-</p>
+
+  <div class="category-content">
+    <div class="category-search">
+      <app-category-search></app-category-search>
+      <button type="button" class="btn btn-success" (click)="createCategory()" name="button">Create new</button>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <app-breadcrum></app-breadcrum>
+      </div>
+      <div class="card-body">
+        <app-category-list *ngIf="show==1" [categories]="categories"></app-category-list>
+        <app-category-individual *ngIf="show==2" [chosenCategory]="chosenCategory"></app-category-individual>
+        <app-category-form *ngIf="show==3"></app-category-form>
+      </div>
+    </div>
+  </div>
