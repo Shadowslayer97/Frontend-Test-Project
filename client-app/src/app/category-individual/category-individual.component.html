@@ -1,0 +1,19 @@
+
+<div class="">
+  <div class="">
+    <div class="">
+      <h3>{{chosenCategory.name}}</h3>
+    </div>
+    <div class="text-center">
+      <p>{{chosenCategory.description}}</p>
+      <h4>{{chosenCategory.type}}</h4>
+    </div>
+    <ul>
+      <li *ngFor="let sc of chosenCategory.subCategories">{{sc.name}}</li>
+    </ul>
+  </div>
+  <div class="">
+    <button type="button" class="btn btn-primary" (click)="editCategory()" name="button">Edit</button>
+    <button type="button" class="btn btn-danger" (click)="deleteCategory()" name="button">Delete</button>
+  </div>
+</div>
