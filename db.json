@@ -1,12 +1,13 @@
 {
   "ids": {
     "User": 6,
-    "AccessToken": 15,
+    "AccessToken": 16,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Category": 2,
-    "Sub-category": 1
+    "Category": 6,
+    "Sub-category": 1,
+    "SubCategory": 4
   },
   "models": {
     "User": {
@@ -30,14 +31,24 @@
       "88FsP08r0JJg7H5XmeFC7CjiVEyhSn7jdO8GzfXxpP71DnkpBYbF7VE43fOe7d5S": "{\"id\":\"88FsP08r0JJg7H5XmeFC7CjiVEyhSn7jdO8GzfXxpP71DnkpBYbF7VE43fOe7d5S\",\"ttl\":1209600,\"created\":\"2018-11-27T07:10:41.090Z\",\"userId\":5}",
       "TZsmrmczdKDGI7aCypEelxVqPiXw3P4SFFa3Dga5cJWOl9TYo4zaGVnHyUkDugWF": "{\"id\":\"TZsmrmczdKDGI7aCypEelxVqPiXw3P4SFFa3Dga5cJWOl9TYo4zaGVnHyUkDugWF\",\"ttl\":1209600,\"created\":\"2018-11-27T07:11:35.615Z\",\"userId\":5}",
       "klXnHP7pyXqsNWCSCcm8Xp8NqKYbXAKpFNB0rgxYHD1OXtCXX06AaoyHSjCMGUR1": "{\"id\":\"klXnHP7pyXqsNWCSCcm8Xp8NqKYbXAKpFNB0rgxYHD1OXtCXX06AaoyHSjCMGUR1\",\"ttl\":1209600,\"created\":\"2018-11-27T07:12:15.289Z\",\"userId\":5}",
-      "9kY9URY8kfaSR1HL7mO8ESycWIJssywI2KjPTaFGybCwBWWJZIMHzHAv2Ik7OjbO": "{\"id\":\"9kY9URY8kfaSR1HL7mO8ESycWIJssywI2KjPTaFGybCwBWWJZIMHzHAv2Ik7OjbO\",\"ttl\":1209600,\"created\":\"2018-11-27T07:13:11.788Z\",\"userId\":5}"
+      "9kY9URY8kfaSR1HL7mO8ESycWIJssywI2KjPTaFGybCwBWWJZIMHzHAv2Ik7OjbO": "{\"id\":\"9kY9URY8kfaSR1HL7mO8ESycWIJssywI2KjPTaFGybCwBWWJZIMHzHAv2Ik7OjbO\",\"ttl\":1209600,\"created\":\"2018-11-27T07:13:11.788Z\",\"userId\":5}",
+      "7d0rN5NTiciMZSuVCckni1GShWDpiMZ7imIo8unZQSjSAayNHDoaiTuaDXucf1CM": "{\"id\":\"7d0rN5NTiciMZSuVCckni1GShWDpiMZ7imIo8unZQSjSAayNHDoaiTuaDXucf1CM\",\"ttl\":1209600,\"created\":\"2018-11-27T20:25:25.546Z\",\"userId\":5}"
     },
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
     "Category": {
-      "1": "{\"name\":\"sport\",\"description\":\"soething soemthing....\",\"type\":\"Sport\",\"id\":1}"
+      "1": "{\"name\":\"sport\",\"description\":\"soething soemthing....\",\"type\":\"Sport\",\"id\":1}",
+      "2": "{\"name\":\"Electronics\",\"description\":\"all electronic stuff..\",\"type\":\"Modern\",\"id\":2}",
+      "3": "{\"name\":\"Fashion\",\"description\":\"all fashion shiny stuff..\",\"type\":\"Personal\",\"id\":3}",
+      "4": "{\"name\":\"default\",\"description\":\"\",\"type\":\"global\",\"id\":4}",
+      "5": "{\"name\":\"Furniture\",\"description\":\"furniture standard home stuff\",\"type\":\"home\",\"id\":5}"
     },
-    "Sub-category": {}
+    "Sub-category": {},
+    "SubCategory": {
+      "1": "{\"name\":\"Ac\",\"description\":\"addictive stuff for children..\",\"parent-type\":\"woah\",\"type\":\"Modern\",\"categoryId\":2,\"id\":1}",
+      "2": "{\"name\":\"Ac\",\"description\":\"lalala\",\"parent-type\":\"\",\"type\":\"new type\",\"id\":2}",
+      "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3}"
+    }
   }
 }

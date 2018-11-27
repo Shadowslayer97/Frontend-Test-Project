@@ -1,3 +1,43 @@
-<p>
-  category-form works!
-</p>
+
+<div class="">
+  <div class="row">
+    <div class="col-sm-6">
+      <label for="name">Name:</label>
+      <input type="text" name="name" [(ngModel)]="categoryFormData.name" placeholder="Enter category text.."/>
+    </div>
+    <div class="col-sm-6">
+      <label for="type"> Type:</label>
+      <input type="text" name="type" value="" [(ngModel)]="categoryFormData.type" placeholder="Enter type.."/>
+    </div>
+    <div class="col-sm-12">
+      <label for="desc">Description:</label>
+      <textarea class="form-control" [(ngModel)]="categoryFormData.description" rows="4"></textarea>
+    </div>
+    <div class="col-sm-12">
+      <ul class=" nav nav-pills">
+        <li class="category-pill">
+          <button (click)="parentCategory=true;categoryDecided=true"> It is a parent category </button>
+        </li>
+        <li class="subcategory-pill">
+          <button (click)="parentCategory=false;categoryDecided=true"> It is a sub-category </button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-12" *ngIf="parentCategory&&categoryDecided">
+      <label for="children">Select children categories:</label>
+      <select multiple>
+        <option *ngFor="let item of childrenList" (click)="setSelected(item)" [value]="item.id">{{item.name}}</option>
+      </select>
+    </div>
+    <div class="col-sm-12" *ngIf="!parentCategory&&categoryDecided">
+      <label for="parent">Select parent category:</label>
+      <select [(ngModel)]="chosenParent">
+        <option *ngFor="let item of parentList" value="item.id">{{item.name}}</option>
+      </select>
+    </div>
+    <div class="col-sm-6">
+      <button type="button" class="btn btn-primary" (click)="createNewCategory()" *ngIf="createCategory" name="button"> Create </button>
+      <button type="button" class="btn btn-primary" (click)="editCategory()" *ngIf="!createCategory" name="button"> Edit </button>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ export class CategoryComponent implements OnInit {
   private categories: Category[];
   private chosenCategory: Category;
   private show:number = 1;
+  private createCategory:boolean = false;
 
   private subscriber: Subscription;
 
@@ -41,7 +42,8 @@ export class CategoryComponent implements OnInit {
 
     }
 
-    createCategory() {
+    createNewCategory() {
+      this.createCategory = true;
       this._sharedService.updateBreadcrumList({
         name: "new"
       },3);

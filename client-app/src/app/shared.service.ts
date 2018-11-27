@@ -16,6 +16,7 @@ export class SharedService {
   private currentView = new Subject<any>();
   public currentView$ = this.currentView.asObservable();
 
+
   constructor() { }
 
   updateBreadcrumList(chosen:any,view:number) {
