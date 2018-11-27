@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../shared/sdk/models';
 import { UserApi } from '../shared/sdk/services';
+import { SharedService } from '../shared.service';
 declare var $:any;
 
 @Component({
@@ -15,7 +16,7 @@ export class AuthenticationComponent implements OnInit {
   private confirmPassword: string;
   private userObject: any = {};
 
-  constructor(private userApi: UserApi, private router: Router) { }
+  constructor(private userApi: UserApi, private router: Router, private _sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -67,8 +68,9 @@ export class AuthenticationComponent implements OnInit {
         console.log(this.userObject);
         this.userApi.login(this.userObject)
           .subscribe((user:any) => {
+            this._sharedService.setLoggedUserDetails(user);
             setTimeout(() => {
-              console.log("yeahhh");
+              console.log(user);
               this.router.navigate(['category']);
             },3000)
           }, error => {
