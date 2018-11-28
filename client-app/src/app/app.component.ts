@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
 
   private subscriber: Subscription;
   private loggedUser: any = {};
+  private showNavbar:boolean = false;
 
   constructor(private _sharedService: SharedService) {
   LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
@@ -22,13 +23,23 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.loggedUser);
+    if(localStorage.getItem('token')) {
+      this.showNavbar = true;
+      this.loggedUser.user.username = localStorage.getItem('token');
+    }
     this.subscriber = this._sharedService.loggedUser$.subscribe(user => {
       console.log(user);
+      this.showNavbar = true;
       this.loggedUser = user;
     })
   }
 
-  isEmptyObject(obj) {
-    return (obj && (Object.keys(obj).length === 0));
+  signOut() {
+    localStorage.removeItem('token')
   }
+
+  // showNavbar(obj) {
+  //   const validRedirect:boolean = (obj && (Object.keys(obj).length === 0)) || localStorage.getItem('token');
+  //   return validRedirect;
+  // }
 }

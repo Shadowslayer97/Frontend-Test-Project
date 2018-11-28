@@ -19,6 +19,9 @@ export class AuthenticationComponent implements OnInit {
   constructor(private userApi: UserApi, private router: Router, private _sharedService: SharedService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('token')) {
+      this.router.navigate(['/category']);
+    }
   }
 
   ngAfterViewInit(){
@@ -61,6 +64,7 @@ export class AuthenticationComponent implements OnInit {
       if(this.confirmPassword === this.userObject.password) {
         this.userApi.createUser(this.userObject)
           .subscribe((user:any) => console.log(user));
+          this.router.navigate(['/login']);
         }
       }
 
@@ -71,6 +75,7 @@ export class AuthenticationComponent implements OnInit {
             this._sharedService.setLoggedUserDetails(user);
             setTimeout(() => {
               console.log(user);
+              localStorage.setItem('token',user.user.username);
               this.router.navigate(['category']);
             },3000)
           }, error => {

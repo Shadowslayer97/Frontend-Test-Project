@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { SDKBrowserModule } from './shared/sdk/index';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedService } from './shared.service';
+import { AuthService } from './auth.service';
 
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
@@ -18,7 +19,7 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 const appRoutes: Routes = [
   { path: '' ,redirectTo: '/login' ,pathMatch:'full' },
   { path: 'login' ,component: AuthenticationComponent },
-  { path: 'category' ,component: CategoryComponent },
+  { path: 'category' ,component: CategoryComponent, canActivate: [AuthService] },
   { path:'**' ,redirectTo: '/login' }
 ];
 
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
       appRoutes,
     )
   ],
-  providers: [SharedService],
+  providers: [SharedService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
