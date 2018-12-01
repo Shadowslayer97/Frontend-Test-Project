@@ -1,0 +1,24 @@
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.search-list {
+  position:absolute;
+  z-index: 10000;
+  width: 100%;
+  left: 0px;
+}
+
+.search-item {
+  background-color: #d3d3d3;
+}
+
+.search-item:hover {
+  background-color: #cdcdcd;
+}

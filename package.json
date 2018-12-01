@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "eslint": "2.5.3",
-    "nsp": "2.1.0"
+    "nsp": "2.1.0",
+    "strong-error-handler": "^1.0.1"
   },
   "repository": {
     "type": "",
