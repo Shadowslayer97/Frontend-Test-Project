@@ -25,7 +25,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
     signUpUser() {
-      console.log(this.userObject);
       if(this.confirmPassword === this.userObject.password) {
         this.userApi.createUser(this.userObject)
           .subscribe((user:any) => console.log(user));

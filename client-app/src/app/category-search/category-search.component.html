@@ -7,7 +7,7 @@
             </div>
             <!--end of col-->
             <div class="col">
-                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                <input #searchInput class="form-control form-control-lg form-control-borderless" (input)="filterCategory(searchInput.value)" type="search" placeholder="Search topics or keywords">
             </div>
             <!--end of col-->
             <div class="col-auto">
@@ -16,5 +16,13 @@
             <!--end of col-->
         </div>
     </form>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-sm-12 dropdown-cats">
+      <div class="list-group search-list" (window:mouseup)="autoCloseForDropdown($event)" *ngIf="showDropdown">
+          <a (click)="updateBreadcrumList(cat,2)" class="list-group-item search-item" *ngFor="let cat of filteredCategories">{{cat.name}}
+          </a>
+      </div>
+    </div>
   </div>
 </div>

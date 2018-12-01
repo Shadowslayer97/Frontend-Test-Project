@@ -1,13 +1,13 @@
 {
   "ids": {
-    "User": 7,
-    "AccessToken": 24,
+    "User": 8,
+    "AccessToken": 25,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "Category": 6,
     "Sub-category": 1,
-    "SubCategory": 4
+    "SubCategory": 5
   },
   "models": {
     "User": {
@@ -16,7 +16,8 @@
       "3": "{\"username\":\"shadowman\",\"password\":\"$2a$10$59.cND93Rlv/WtmHCIMm7eFlKKmrg4Vzcj69VycZ26gDGr2oNPLCm\",\"email\":\"shadow1@gmail.com\",\"id\":3}",
       "4": "{\"username\":\"test\",\"password\":\"$2a$10$RwP8W5Vfr5WBnbYPRQNXSekVMgt4R0Qj14wuBDSFlJLAzAiyZ3DlO\",\"email\":\"test@gmail.com\",\"id\":4}",
       "5": "{\"username\":\"test1\",\"password\":\"$2a$10$nyCuI07iRqEzj.k679a70O5aF19c45pKIh9pog4KOTt7pPmMA2sD2\",\"email\":\"test1@gmail.com\",\"id\":5}",
-      "6": "{\"username\":\"test2\",\"password\":\"$2a$10$6odPwKr4/DMxWTRaGDbkVukmFHGK8i3EgPHOp6vpqY3dNWRUCedzy\",\"email\":\"test2@gmail.com\",\"id\":6}"
+      "6": "{\"username\":\"test2\",\"password\":\"$2a$10$6odPwKr4/DMxWTRaGDbkVukmFHGK8i3EgPHOp6vpqY3dNWRUCedzy\",\"email\":\"test2@gmail.com\",\"id\":6}",
+      "7": "{\"username\":\"test3\",\"password\":\"$2a$10$vhVBcPfkxIQLHyRyhbhNeutp5oCuilgv.AjDT6Cp3yC1xDLy19Rhi\",\"email\":\"test3@gmail.com\",\"id\":7}"
     },
     "AccessToken": {
       "W8JWrR5vGXSJpM7u6j4UIhAwZgAa148HFWARelQGElXioGRehTKlG5NgpeCgSst5": "{\"id\":\"W8JWrR5vGXSJpM7u6j4UIhAwZgAa148HFWARelQGElXioGRehTKlG5NgpeCgSst5\",\"ttl\":1209600,\"created\":\"2018-11-25T20:04:16.329Z\",\"userId\":4}",
@@ -41,7 +42,8 @@
       "cmxZbhZNRRh5DpkK51GG2YsPvzkxviz162FAMlmSgVZJWyGKDQEHtHWdxG71yGnI": "{\"id\":\"cmxZbhZNRRh5DpkK51GG2YsPvzkxviz162FAMlmSgVZJWyGKDQEHtHWdxG71yGnI\",\"ttl\":1209600,\"created\":\"2018-11-28T10:28:40.319Z\",\"userId\":6}",
       "QY3YpqY7xQVTRxVovhMIhPAlaPp4gPw8YulXBlgjE4x6866sxpyL5Soa97OfHHhj": "{\"id\":\"QY3YpqY7xQVTRxVovhMIhPAlaPp4gPw8YulXBlgjE4x6866sxpyL5Soa97OfHHhj\",\"ttl\":1209600,\"created\":\"2018-11-28T10:39:10.378Z\",\"userId\":5}",
       "QQj4CV5xDsJ2sKYQq5hyyY4EBdYJdMUlTFKxb9Ze9CiRBhtVODCM3SZxU460nYtp": "{\"id\":\"QQj4CV5xDsJ2sKYQq5hyyY4EBdYJdMUlTFKxb9Ze9CiRBhtVODCM3SZxU460nYtp\",\"ttl\":1209600,\"created\":\"2018-11-28T10:43:55.231Z\",\"userId\":5}",
-      "szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl": "{\"id\":\"szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl\",\"ttl\":1209600,\"created\":\"2018-11-28T10:44:38.734Z\",\"userId\":5}"
+      "szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl": "{\"id\":\"szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl\",\"ttl\":1209600,\"created\":\"2018-11-28T10:44:38.734Z\",\"userId\":5}",
+      "VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf": "{\"id\":\"VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf\",\"ttl\":1209600,\"created\":\"2018-11-30T18:00:59.595Z\",\"userId\":7}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -57,7 +59,8 @@
     "SubCategory": {
       "1": "{\"name\":\"Ac\",\"description\":\"addictive stuff for children..\",\"parent-type\":\"woah\",\"type\":\"Modern\",\"categoryId\":2,\"id\":1}",
       "2": "{\"name\":\"Ac\",\"description\":\"lalala\",\"parent-type\":\"\",\"type\":\"new type\",\"id\":2}",
-      "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3}"
+      "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3}",
+      "4": "{\"name\":\"My category\",\"description\":\"Yolosoawos\",\"parent-type\":\"\",\"type\":\"some type\",\"id\":4}"
     }
   }
 }
