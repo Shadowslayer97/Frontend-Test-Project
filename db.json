@@ -7,7 +7,7 @@
     "Role": 1,
     "Category": 6,
     "Sub-category": 1,
-    "SubCategory": 5
+    "SubCategory": 10
   },
   "models": {
     "User": {
@@ -60,7 +60,12 @@
       "1": "{\"name\":\"Ac\",\"description\":\"addictive stuff for children..\",\"parent-type\":\"woah\",\"type\":\"Modern\",\"categoryId\":2,\"id\":1}",
       "2": "{\"name\":\"Ac\",\"description\":\"lalala\",\"parent-type\":\"\",\"type\":\"new type\",\"id\":2}",
       "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3}",
-      "4": "{\"name\":\"My category\",\"description\":\"Yolosoawos\",\"parent-type\":\"\",\"type\":\"some type\",\"id\":4}"
+      "4": "{\"name\":\"My category\",\"description\":\"Yolosoawos\",\"parent-type\":\"\",\"type\":\"some type\",\"id\":4}",
+      "5": "{\"name\":\"phone\",\"description\":\"adkasdasldas\",\"parent-type\":\"\",\"type\":\"electr\",\"id\":5}",
+      "6": "{\"name\":\"phn\",\"description\":\"dsf\",\"parent-type\":\"\",\"type\":\"dsa\",\"id\":6}",
+      "7": "{\"name\":\"phn\",\"description\":\"asdafdas\",\"parent-type\":\"\",\"type\":\"asdok\",\"id\":7}",
+      "8": "{\"name\":\"phn\",\"description\":\"fdsfsd\",\"parent-type\":\"\",\"type\":\"sadas\",\"id\":8}",
+      "9": "{\"name\":\"phn\",\"description\":\"fdsf\",\"parent-type\":\"\",\"type\":\"sadsa\",\"id\":9}"
     }
   }
 }
