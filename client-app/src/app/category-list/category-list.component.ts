@@ -16,11 +16,29 @@ export class CategoryListComponent implements OnInit {
   constructor(private categoryApi: CategoryApi, private _sharedService: SharedService) { }
 
   ngOnInit() {
-
   }
 
   updateBreadcrumList(chosenCategory: Category,view: number) {
     this._sharedService.updateBreadcrumList(chosenCategory,view);
+  }
+
+  ngAfterViewInit() {
+    var mincount = 2;
+    var maxcount = 4;
+
+    $(".list-group li").slice(2).hide();
+
+    $(".category-list").scroll(function() {
+
+      if($(".category-list").scrollTop() + $(".category-list").height() >= $(".category-list")[0].scrollHeight) {
+
+        $(".list-group li").slice(mincount,maxcount).fadeIn(1000);
+
+        mincount = mincount+2;
+        maxcount = maxcount+4;
+
+      }
+    });
   }
 
 }

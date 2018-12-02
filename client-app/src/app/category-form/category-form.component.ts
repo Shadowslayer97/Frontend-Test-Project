@@ -57,7 +57,7 @@ export class CategoryFormComponent implements OnInit {
 
   setSelected(selectElement) {
     console.log(selectElement);
-    this.selectedChildrenList.push(selectElement.id);
+    this.selectedChildrenList.push(selectElement);
   }
 
 // Creating a parent category with children sub categories
@@ -67,6 +67,7 @@ export class CategoryFormComponent implements OnInit {
         console.log(result);
         if(this.selectedChildrenList.length!=0) {
           this.selectedChildrenList.forEach(child => {
+            console.log(child);
             child.categoryId = result.id;
             this.subCategoryApi.updateSubCategory(child).subscribe(res => {
               console.log("done");
@@ -74,6 +75,8 @@ export class CategoryFormComponent implements OnInit {
           })
           this.createToast("Category created!","green");
         }
+      },error => {
+        this.createToast("Something went wrong!","red");
       })
     }
     else {  //Create a new sub category
@@ -84,6 +87,8 @@ export class CategoryFormComponent implements OnInit {
       this.subCategoryApi.createSubCategory(this.subCategoryFormData).subscribe(result => {
         console.log(result);
         this.createToast("SubCategory created!","green");
+      },error => {
+        this.createToast("Something went wrong!","red");
       });
     }
   }

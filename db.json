@@ -1,13 +1,13 @@
 {
   "ids": {
     "User": 8,
-    "AccessToken": 25,
+    "AccessToken": 27,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "Category": 6,
+    "Category": 11,
     "Sub-category": 1,
-    "SubCategory": 10
+    "SubCategory": 11
   },
   "models": {
     "User": {
@@ -43,7 +43,9 @@
       "QY3YpqY7xQVTRxVovhMIhPAlaPp4gPw8YulXBlgjE4x6866sxpyL5Soa97OfHHhj": "{\"id\":\"QY3YpqY7xQVTRxVovhMIhPAlaPp4gPw8YulXBlgjE4x6866sxpyL5Soa97OfHHhj\",\"ttl\":1209600,\"created\":\"2018-11-28T10:39:10.378Z\",\"userId\":5}",
       "QQj4CV5xDsJ2sKYQq5hyyY4EBdYJdMUlTFKxb9Ze9CiRBhtVODCM3SZxU460nYtp": "{\"id\":\"QQj4CV5xDsJ2sKYQq5hyyY4EBdYJdMUlTFKxb9Ze9CiRBhtVODCM3SZxU460nYtp\",\"ttl\":1209600,\"created\":\"2018-11-28T10:43:55.231Z\",\"userId\":5}",
       "szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl": "{\"id\":\"szCWqRac8g6Pq3JhUOMzkMIRIGSM2BurYXAfi1676PbZK3EfidvcXlb3yOetTrGl\",\"ttl\":1209600,\"created\":\"2018-11-28T10:44:38.734Z\",\"userId\":5}",
-      "VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf": "{\"id\":\"VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf\",\"ttl\":1209600,\"created\":\"2018-11-30T18:00:59.595Z\",\"userId\":7}"
+      "VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf": "{\"id\":\"VwpGjZ2hHCIQhEuMlSUqbbzsuWD87dl68rGjagcXFFKdLkJitruixqq065q6SaMf\",\"ttl\":1209600,\"created\":\"2018-11-30T18:00:59.595Z\",\"userId\":7}",
+      "KCblgLRkDkcwhVoGzV46hws8kH3FaIQmYRqxYyY1gXkSYJjLONSLwuQXTx7cvTop": "{\"id\":\"KCblgLRkDkcwhVoGzV46hws8kH3FaIQmYRqxYyY1gXkSYJjLONSLwuQXTx7cvTop\",\"ttl\":1209600,\"created\":\"2018-12-02T19:00:28.270Z\",\"userId\":6}",
+      "kjcRfkchSRJAoPouutUNcCcrp13HBcyfdR25uQUJp6KPLF5dHaK9WZKj8XIMXMKW": "{\"id\":\"kjcRfkchSRJAoPouutUNcCcrp13HBcyfdR25uQUJp6KPLF5dHaK9WZKj8XIMXMKW\",\"ttl\":1209600,\"created\":\"2018-12-02T19:32:26.980Z\",\"userId\":7}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -52,20 +54,22 @@
       "1": "{\"name\":\"sport\",\"description\":\"soething soemthing....\",\"type\":\"Sport\",\"id\":1}",
       "2": "{\"name\":\"Electronics\",\"description\":\"all electronic stuff..\",\"type\":\"Modern\",\"id\":2}",
       "3": "{\"name\":\"Fashion\",\"description\":\"all fashion shiny stuff..\",\"type\":\"Personal\",\"id\":3}",
-      "4": "{\"name\":\"default\",\"description\":\"\",\"type\":\"global\",\"id\":4}",
-      "5": "{\"name\":\"Furniture\",\"description\":\"furniture standard home stuff\",\"type\":\"home\",\"id\":5}"
+      "5": "{\"name\":\"Furniture\",\"description\":\"furniture standard home stuff\",\"type\":\"home\",\"id\":5}",
+      "6": "{\"name\":\"default\",\"description\":\"\",\"type\":\"global\",\"id\":6}",
+      "7": "{\"name\":\"Fashion1\",\"description\":\"asdasfa\",\"type\":\"dsadas\",\"id\":7}"
     },
     "Sub-category": {},
     "SubCategory": {
-      "1": "{\"name\":\"Ac\",\"description\":\"addictive stuff for children..\",\"parent-type\":\"woah\",\"type\":\"Modern\",\"categoryId\":2,\"id\":1}",
+      "1": "{\"name\":\"Ac\",\"description\":\"addictive stuff for children..\",\"parent-type\":\"woah\",\"type\":\"Modern\",\"categoryId\":10,\"id\":1}",
       "2": "{\"name\":\"Ac\",\"description\":\"lalala\",\"parent-type\":\"\",\"type\":\"new type\",\"id\":2}",
-      "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3}",
+      "3": "{\"name\":\"Mobiles\",\"description\":\"addictive and portable...ah\",\"parent-type\":\"\",\"type\":\"personal\",\"id\":3,\"categoryId\":10}",
       "4": "{\"name\":\"My category\",\"description\":\"Yolosoawos\",\"parent-type\":\"\",\"type\":\"some type\",\"id\":4}",
       "5": "{\"name\":\"phone\",\"description\":\"adkasdasldas\",\"parent-type\":\"\",\"type\":\"electr\",\"id\":5}",
       "6": "{\"name\":\"phn\",\"description\":\"dsf\",\"parent-type\":\"\",\"type\":\"dsa\",\"id\":6}",
       "7": "{\"name\":\"phn\",\"description\":\"asdafdas\",\"parent-type\":\"\",\"type\":\"asdok\",\"id\":7}",
       "8": "{\"name\":\"phn\",\"description\":\"fdsfsd\",\"parent-type\":\"\",\"type\":\"sadas\",\"id\":8}",
-      "9": "{\"name\":\"phn\",\"description\":\"fdsf\",\"parent-type\":\"\",\"type\":\"sadsa\",\"id\":9}"
+      "9": "{\"name\":\"phn\",\"description\":\"fdsf\",\"parent-type\":\"\",\"type\":\"sadsa\",\"id\":9}",
+      "10": "{\"name\":\"Shirts\",\"description\":\"a piece of clothing usually worn on the top...\",\"parent-type\":\"\",\"type\":\"clothing\",\"id\":10}"
     }
   }
 }

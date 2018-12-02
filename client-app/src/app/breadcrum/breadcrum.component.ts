@@ -23,11 +23,17 @@ export class BreadcrumComponent implements OnInit {
   ngOnInit() {
     this.subscriber = this._sharedService.breadcrumListItem$.subscribe(item => {
       this.breadcrumList.push(item);
+      if(this.breadcrumList.legnth>2) {
+        this.breadcrumList.push({ name:"buggy.."});
+      }
       console.log(this.breadcrumList);
     })
   }
 
   // // TODO:
   // Implement CHANGE component method
+  changeComponent() {
+
+  }
 
 }

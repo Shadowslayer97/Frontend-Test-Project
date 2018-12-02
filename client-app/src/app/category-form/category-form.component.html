@@ -15,11 +15,11 @@
     </div>
     <div class="col-sm-12">
       <ul class=" nav nav-pills">
-        <li class="category-pill">
-          <button (click)="parentCategory=true;categoryDecided=true"> It is a parent category </button>
+        <li class="nav-item category-pill">
+          <a class="nav-link" data-toggle="pill" (click)="parentCategory=true;categoryDecided=true"> It is a parent category </a>
         </li>
-        <li class="subcategory-pill">
-          <button (click)="parentCategory=false;categoryDecided=true"> It is a sub-category </button>
+        <li class="nav-item subcategory-pill">
+          <a class="nav-link" data-toggle="pill" (click)="parentCategory=false;categoryDecided=true"> It is a sub-category </a>
         </li>
       </ul>
     </div>
@@ -40,6 +40,4 @@
       <button type="button" class="btn btn-primary" (click)="editCategory()" *ngIf="!createCategory" name="button"> Edit </button>
     </div>
   </div>
-</div>
-<div id="snackbar">
 </div>

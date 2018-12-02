@@ -1,8 +1,7 @@
-<div class="">
+
   <ul class="list-inline">
     <li class="list-inline-item bread-item" *ngFor="let bc of breadcrumList">
-        <a href="#" (click)="changeComponent(bc)" class="bread-name">{{bc.name}}</a>
+        <a href="/category" (click)="changeComponent(bc)" class="bread-name">{{bc.name}}</a>
         <p class="bread-next"> > </p>
     </li>
   </ul>
-</div>

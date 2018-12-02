@@ -1,6 +1,8 @@
 
 <h3 class="text-center">Category List</h3>
-<div class="list-group">
-  <a (click)="updateBreadcrumList(cat,2)" class="list-group-item category-list-item" *ngFor="let cat of categories">{{cat.name}}
-  </a>
-</div>
+<div class="category-list">
+  <ul class="list-group category-list-ul">
+    <li (click)="updateBreadcrumList(cat,2)" class="list-group-item category-list-item" *ngFor="let cat of categories">{{cat.name}}
+    </li>
+  </ul>
+  </div>

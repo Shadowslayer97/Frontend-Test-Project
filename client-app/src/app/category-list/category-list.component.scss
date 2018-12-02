@@ -1,4 +1,9 @@
 
-.category-list-item:hover {
-  background-color: #D3D3D3;
+.category-list {
+  overflow-y: auto;
+  height:200px;
+}
+
+.category-list-ul {
+  list-style-type: none;
 }

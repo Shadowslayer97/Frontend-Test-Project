@@ -28,4 +28,15 @@ export class SharedService {
     this.loggedUser.next((user));
   }
 
+  createToast(message:string, backgroundColor:string) {
+    let snackbar = document.getElementById("snackbar");
+    console.log(snackbar);
+    snackbar.className = "showToast";
+    snackbar.style.background = backgroundColor || "#000";
+    snackbar.innerHTML = message;
+    setTimeout(() => {
+      snackbar.className = snackbar.className.replace("showToast", "");
+    }, 3000);
+  }
+
 }

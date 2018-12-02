@@ -27,8 +27,12 @@ export class AuthenticationComponent implements OnInit {
     signUpUser() {
       if(this.confirmPassword === this.userObject.password) {
         this.userApi.createUser(this.userObject)
-          .subscribe((user:any) => console.log(user));
-          this.router.navigate(['/login']);
+          .subscribe((user:any) => {
+            this._sharedService.createToast("User created!","green");
+            this.router.navigate(['/login']);
+          });
+        } else {
+          this._sharedService.createToast("Passwords do not match!","red");
         }
       }
 
@@ -40,10 +44,12 @@ export class AuthenticationComponent implements OnInit {
             setTimeout(() => {
               console.log(user);
               localStorage.setItem('token',user.user.username);
+              this._sharedService.createToast("Login Successful!","green");
               this.router.navigate(['category']);
             },3000)
           }, error => {
             console.log(error);
+            this._sharedService.createToast("Check credentials!!","red");
           })
       }
 
