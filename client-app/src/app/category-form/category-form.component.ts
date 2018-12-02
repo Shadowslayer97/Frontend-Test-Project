@@ -72,6 +72,7 @@ export class CategoryFormComponent implements OnInit {
               console.log("done");
             })
           })
+          this.createToast("Category created!","green");
         }
       })
     }
@@ -82,12 +83,24 @@ export class CategoryFormComponent implements OnInit {
       this.subCategoryFormData.categoryId = this.chosenParent.id;
       this.subCategoryApi.createSubCategory(this.subCategoryFormData).subscribe(result => {
         console.log(result);
+        this.createToast("SubCategory created!","green");
       });
     }
   }
 
   editCategory() {
 
+  }
+
+  createToast(message:string, backgroundColor:string) {
+    let snackbar = document.getElementById("snackbar");
+    console.log(snackbar);
+    snackbar.className = "showToast";
+    snackbar.style.background = backgroundColor || "#000";
+    snackbar.innerHTML = message;
+    setTimeout(() => {
+      snackbar.className = snackbar.className.replace("showToast", "");
+    }, 3000);
   }
 
 }
