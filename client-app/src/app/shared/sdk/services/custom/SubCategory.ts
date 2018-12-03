@@ -74,6 +74,17 @@ export class SubCategoryApi extends BaseLoopBackApi {
     return result;
   }
 
+  public getSubCategoriesOfCategory(categoryId: number, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/SubCategories?filter[where][categoryId]="+categoryId;
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
   public updateSubCategory(data: SubCategory = new SubCategory(), customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +

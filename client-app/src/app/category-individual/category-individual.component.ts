@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Category } from '../shared/sdk/models';
 import { SharedService } from '../shared.service';
 import { CategoryApi } from '../shared/sdk/services';
+import { SubCategoryApi } from '../shared/sdk/services';
+
 
 @Component({
   selector: 'app-category-individual',
@@ -12,11 +14,23 @@ import { CategoryApi } from '../shared/sdk/services';
 export class CategoryIndividualComponent implements OnInit {
 
   @Input() chosenCategory: Category;
+  private childrenList: any = [];
 
-  constructor(private categoryApi: CategoryApi, private _sharedService: SharedService, private router: Router) { }
+  constructor(
+    private subCategoryApi: SubCategoryApi,
+    private categoryApi: CategoryApi,
+    private _sharedService: SharedService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     console.log(this.chosenCategory);
+    this.subCategoryApi.getSubCategoriesOfCategory(this.chosenCategory.id).subscribe((subCategories:any[]) => {
+        console.log(subCategories);
+        this.childrenList = subCategories;
+    },error => {
+      console.log(error);
+    });
   }
 
   editCategory() {

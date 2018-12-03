@@ -32,7 +32,7 @@
     <div class="col-sm-12" *ngIf="!parentCategory&&categoryDecided">
       <label for="parent">Select parent category:</label>
       <select [(ngModel)]="chosenParent">
-        <option *ngFor="let item of parentList" value="item.id">{{item.name}}</option>
+        <option *ngFor="let item of parentList" [ngValue]="item">{{item.name}}</option>
       </select>
     </div>
     <div class="col-sm-6">

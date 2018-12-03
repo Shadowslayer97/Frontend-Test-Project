@@ -56,7 +56,6 @@ export class CategoryFormComponent implements OnInit {
   }
 
   setSelected(selectElement) {
-    console.log(selectElement);
     this.selectedChildrenList.push(selectElement);
   }
 
@@ -64,10 +63,8 @@ export class CategoryFormComponent implements OnInit {
   createNewCategory() {
     if(this.parentCategory) {
       this.categoryApi.createCategory(this.categoryFormData).subscribe(result => {
-        console.log(result);
         if(this.selectedChildrenList.length!=0) {
           this.selectedChildrenList.forEach(child => {
-            console.log(child);
             child.categoryId = result.id;
             this.subCategoryApi.updateSubCategory(child).subscribe(res => {
               console.log("done");
@@ -99,7 +96,6 @@ export class CategoryFormComponent implements OnInit {
 
   createToast(message:string, backgroundColor:string) {
     let snackbar = document.getElementById("snackbar");
-    console.log(snackbar);
     snackbar.className = "showToast";
     snackbar.style.background = backgroundColor || "#000";
     snackbar.innerHTML = message;

@@ -8,10 +8,16 @@
       <p>{{chosenCategory.description}}</p>
       <h4>{{chosenCategory.type}}</h4>
     </div>
-    <ul>
-      <li *ngFor="let sc of chosenCategory.subCategories">{{sc.name}}</li>
-    </ul>
-  </div>
+    <div class="" *ngIf="childrenList.length>0">
+      <h4>Sub-categories:</h4>
+      <div class="category-list" >
+        <ul class="list-group category-list-ul">
+          <li class="list-group-item category-list-item" *ngFor="let sc of childrenList">{{sc.name}}
+          </li>
+        </ul>
+        </div>
+    </div>
+    </div>
   <div class="">
     <button type="button" class="btn btn-primary" (click)="editCategory()" name="button">Edit <i class="fa fa-pencil"></i></button>
     <button type="button" class="btn btn-danger" (click)="deleteCategory()" name="button">Delete <i class="fa fa-thrash"></i></button>
